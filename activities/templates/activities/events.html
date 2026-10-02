@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+{% block title %}Events | Vision for Talents{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Events</h1>
+
+  <h2 class="h5 text-muted">Upcoming</h2>
+  <div class="row g-4 mb-5">
+    {% for event in upcoming %}
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm border-start border-4" style="border-color: var(--vft-link-hover) !important;">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="text-muted small">{{ event.date }}{% if event.location %} — {{ event.location }}{% endif %}</p>
+            <p class="card-text">{{ event.description|truncatewords:25 }}</p>
+            {% if event.registration_link %}
+              <a href="{{ event.registration_link }}" class="btn btn-accent btn-sm" target="_blank" rel="noopener">Register</a>
+            {% endif %}
+            {% if event.flyer %}
+              <a href="{{ event.flyer.url }}" class="btn btn-outline-secondary btn-sm">Flyer</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">None scheduled.</p>
+    {% endfor %}
+  </div>
+
+  <h2 class="h5 text-muted">Past</h2>
+  <div class="row g-4">
+    {% for event in past %}
+      <div class="col-md-6">
+        <div class="card h-100">
+          <div class="card-body">
+            <h5 class="card-title">{{ event.title }}</h5>
+            <p class="text-muted small">{{ event.date }}{% if event.location %} — {{ event.location }}{% endif %}</p>
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No past events.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

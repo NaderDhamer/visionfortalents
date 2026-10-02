@@ -1,0 +1,85 @@
+<footer class="site-footer text-light py-5">
+  <div class="container">
+    <div class="row mb-4">
+      <!-- Logo and branding -->
+      <div class="col-md-3 mb-4 mb-md-0">
+        <div class="footer-logo-box">
+          <div class="footer-logo-placeholder mb-3">
+            <svg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg" class="footer-logo">
+              <rect width="80" height="80" rx="8" fill="rgba(255,255,255,0.1)" stroke="rgba(255,255,255,0.3)" stroke-width="2"/>
+              <text x="40" y="45" text-anchor="middle" font-size="24" font-weight="bold" fill="#fff" font-family="Inter">V</text>
+            </svg>
+          </div>
+          <h6 class="text-white fw-bold">Vision for Talents</h6>
+          <p class="small text-muted">EU-funded research & training project</p>
+        </div>
+      </div>
+
+     <!-- Navigation links -->
+<div class="col-md-3">
+  <h6 class="text-white fw-bold mb-3">Navigation</h6>
+  <ul class="list-unstyled footer-nav">
+    <li><a href="{% url 'core:home' %}">Home</a></li>
+    <li><a href="{% url 'core:about' %}">About</a></li>
+    <li><a href="{% url 'core:training' %}">Training</a></li>
+    <li class="dropdown">
+      <a href="{% url 'activities:index' %}" class="dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false">
+        Activities
+      </a>
+      <ul class="dropdown-menu dropdown-menu-dark">
+        <li><a class="dropdown-item" href="{% url 'activities:benchmarking' %}">Benchmarking</a></li>
+        <li><a class="dropdown-item" href="{% url 'activities:media' %}">Vision in the Media</a></li>
+        <li><a class="dropdown-item" href="{% url 'activities:events' %}">Events</a></li>
+      </ul>
+    </li>
+    <li><a href="{% url 'core:sab_members' %}">SAB Members</a></li>
+    <li><a href="{% url 'core:consortium' %}">Consortium</a></li>
+    <li><a href="{% url 'core:contact' %}">Contact</a></li>
+  </ul>
+</div>
+
+      <!-- Contact info -->
+      <div class="col-md-3">
+        <h6 class="text-white fw-bold mb-3">Contact</h6>
+        <p class="mb-2">
+          <a href="mailto:visionproject@pasteur.utm.tn" class="text-light text-decoration-none">
+            visionproject@pasteur.utm.tn
+          </a>
+        </p>
+        <p class="small text-muted mb-3">
+          We typically respond within 2 business days.
+        </p>
+        <div class="d-flex gap-3">
+          <a href="https://linkedin.com/company/vision-talents" target="_blank" rel="noopener" class="text-light text-decoration-none" title="LinkedIn">
+            <i class="bi bi-linkedin"></i> LinkedIn
+          </a>
+          <a href="#" target="_blank" rel="noopener" class="text-light text-decoration-none" title="Facebook">
+            <i class="bi bi-facebook"></i> Facebook
+          </a>
+        </div>
+      </div>
+
+      <!-- Funding info -->
+      <div class="col-md-3">
+        <h6 class="text-white fw-bold mb-3">Funding</h6>
+        <p class="small text-muted mb-2">
+          This project has received funding from the European Union under the Horizon Europe program.
+        </p>
+        <p class="small text-muted">
+          <strong>Grant Agreement:</strong> 101120507<br>
+          <strong>Project Period:</strong> 2023–2027
+        </p>
+      </div>
+    </div>
+
+    <!-- Footer bottom line -->
+    <hr class="border-secondary opacity-25">
+    <div class="row">
+      <div class="col-12">
+        <p class="small text-muted text-center mb-0">
+          © 2025 Vision for Talents. Institut Pasteur de Tunis. All rights reserved.
+        </p>
+      </div>
+    </div>
+  </div>
+</footer>

@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block title %}Activities | Vision for Talents{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Activities</h1>
+  <div class="row g-4">
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Benchmarking</h5>
+          <p class="card-text text-muted">Comparative analysis and reports produced within the project.</p>
+          <a href="{% url 'activities:benchmarking' %}" class="btn btn-accent">View entries</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Vision in the Media</h5>
+          <p class="card-text text-muted">Press coverage and media mentions of the project.</p>
+          <a href="{% url 'activities:media' %}" class="btn btn-accent">View mentions</a>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card h-100 shadow-sm">
+        <div class="card-body">
+          <h5 class="card-title">Events</h5>
+          <p class="card-text text-muted">Upcoming and past project events.</p>
+          <a href="{% url 'activities:events' %}" class="btn btn-accent">View events</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

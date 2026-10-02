@@ -1,0 +1,130 @@
+{% extends 'base.html' %}
+
+{% block title %}Vision for Talents{% endblock %}
+
+{% block content %}
+
+<div id="wpCarousel" class="carousel slide carousel-fade" data-bs-ride="carousel">
+
+  <div class="carousel-indicators">
+    {% for wp in work_packages %}
+      <button type="button" data-bs-target="#wpCarousel" data-bs-slide-to="{{ forloop.counter0 }}"
+              class="{% if forloop.first %}active{% endif %}"
+              aria-current="{% if forloop.first %}true{% endif %}"
+              aria-label="WP{{ wp.number }}"></button>
+    {% endfor %}
+  </div>
+
+  <div class="carousel-inner">
+    {% for wp in work_packages %}
+      <div class="carousel-item {% if forloop.first %}active{% endif %}">
+        <img src="{{ wp.image.url }}" class="d-block w-100" alt="{{ wp.title }}"
+             style="height: 480px; object-fit: cover;">
+        <div class="carousel-caption d-none d-md-block bg-dark bg-opacity-50 rounded p-3">
+          <h2>WP{{ wp.number }}: {{ wp.title }}</h2>
+          <p>{{ wp.description|truncatewords:30 }}</p>
+          <a href="{{ wp.get_absolute_url }}" class="btn btn-primary">Explore More</a>
+        </div>
+      </div>
+    {% empty %}
+      <div class="carousel-item active">
+        <div class="d-flex align-items-center justify-content-center bg-secondary text-white" style="height: 480px;">
+          <p>No work packages added yet — add some in the admin.</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+
+  {% if work_packages %}
+    <button class="carousel-control-prev" type="button" data-bs-target="#wpCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#wpCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+  {% endif %}
+</div>
+
+<div class="container text-center py-4">
+  <p class="text-muted mb-2">Project coordinated by <strong>Institut Pasteur de Tunis</strong></p>
+  <div class="border rounded d-inline-block px-4 py-2 text-muted small">
+    [EU funding logo placeholder — wired up in Stage 9]
+  </div>
+  <p class="small text-muted mt-2">
+    This project has received funding from the European Union under grant agreement No. XXXXXXX.
+  </p>
+</div>
+<!-- Latest Section -->
+<div class="py-5 bg-light">
+  <div class="container">
+    <h2 class="mb-5 text-center">Latest Updates</h2>
+
+    <div class="row g-4">
+      <!-- Latest Events -->
+      <div class="col-lg-4">
+        <h4 class="h5 mb-3 text-dark">Upcoming Events</h4>
+        <div class="d-flex flex-column gap-3">
+          {% for event in latest_events %}
+            <div class="card shadow-sm border-0" data-animate>
+              <div class="card-body">
+                <h6 class="card-title text-dark">{{ event.title }}</h6>
+                <p class="card-text small text-muted mb-2">{{ event.date }}</p>
+                {% if event.location %}
+                  <p class="card-text small text-muted mb-2">📍 {{ event.location }}</p>
+                {% endif %}
+                <a href="{% url 'activities:events' %}" class="btn btn-accent btn-sm">View all</a>
+              </div>
+            </div>
+          {% empty %}
+            <p class="text-muted small">No upcoming events yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Latest Training -->
+      <div class="col-lg-4">
+        <h4 class="h5 mb-3 text-dark">Latest Training</h4>
+        <div class="d-flex flex-column gap-3">
+          {% for program in latest_training %}
+            <div class="card shadow-sm border-0" data-animate>
+              {% if program.image %}
+                <img src="{{ program.image.url }}" class="card-img-top" alt="{{ program.title }}" style="height: 120px; object-fit: cover;">
+              {% endif %}
+              <div class="card-body">
+                <h6 class="card-title text-dark">{{ program.title }}</h6>
+                <p class="card-text small text-muted mb-2">{{ program.date }}</p>
+                <a href="{% url 'core:training' %}" class="btn btn-accent btn-sm">View all</a>
+              </div>
+            </div>
+          {% empty %}
+            <p class="text-muted small">No training programs yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+
+      <!-- Latest Benchmarks -->
+      <div class="col-lg-4">
+        <h4 class="h5 mb-3 text-dark">Latest Benchmarks</h4>
+        <div class="d-flex flex-column gap-3">
+          {% for benchmark in latest_benchmarks %}
+            <div class="card shadow-sm border-0" data-animate>
+              {% if benchmark.image %}
+                <img src="{{ benchmark.image.url }}" class="card-img-top" alt="{{ benchmark.title }}" style="height: 120px; object-fit: cover;">
+              {% endif %}
+              <div class="card-body">
+                <h6 class="card-title text-dark">{{ benchmark.title }}</h6>
+                <p class="card-text small text-muted mb-2">{{ benchmark.date }}</p>
+                <a href="{% url 'activities:benchmarking' %}" class="btn btn-accent btn-sm">View all</a>
+              </div>
+            </div>
+          {% empty %}
+            <p class="text-muted small">No benchmarks yet.</p>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

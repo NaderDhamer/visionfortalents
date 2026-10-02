@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block title %}SAB Members | Vision for Talents{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Scientific Advisory Board</h1>
+  <div class="row g-4">
+    {% for member in members %}
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          {% if member.photo %}
+            <img src="{{ member.photo.url }}" class="card-img-top" alt="{{ member.name }}" style="height: 250px; object-fit: cover;">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ member.name }}</h5>
+            {% if member.affiliation %}
+              <p class="text-muted small">{{ member.affiliation }}</p>
+            {% endif %}
+            {% if member.bio %}
+              <p class="card-text">{{ member.bio|truncatewords:25 }}</p>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No members added yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

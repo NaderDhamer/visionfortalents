@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block title %}Consortium | Vision for Talents{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Consortium Partners</h1>
+  <div class="row g-4">
+    {% for partner in partners %}
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          {% if partner.logo %}
+            <img src="{{ partner.logo.url }}" class="card-img-top" alt="{{ partner.name }}" style="height: 200px; object-fit: contain; background-color: #f8f9fa; padding: 20px;">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ partner.name }}</h5>
+            {% if partner.country %}
+              <p class="text-muted small">{{ partner.country }}</p>
+            {% endif %}
+            {% if partner.description %}
+              <p class="card-text">{{ partner.description|truncatewords:25 }}</p>
+            {% endif %}
+            {% if partner.website %}
+              <a href="{{ partner.website }}" class="btn btn-accent btn-sm" target="_blank" rel="noopener">Visit</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No partners added yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

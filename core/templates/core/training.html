@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% block title %}Training | Vision for Talents{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Training</h1>
+  
+  <div class="row g-4">
+    {% for program in page_obj %}
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          {% if program.image %}
+            <img src="{{ program.image.url }}" class="card-img-top" alt="{{ program.title }}" style="height: 200px; object-fit: cover;">
+          {% endif %}
+          <div class="card-body">
+            <h5 class="card-title">{{ program.title }}</h5>
+            <p class="text-muted small">{{ program.date }}</p>
+            <p class="card-text">{{ program.description|truncatewords:25 }}</p>
+            {% if program.application_link %}
+              <a href="{{ program.application_link }}" class="btn btn-accent btn-sm" target="_blank" rel="noopener">Apply</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No training programs added yet.</p>
+    {% endfor %}
+  </div>
+
+  <!-- Pagination controls -->
+  {% if page_obj.has_other_pages %}
+    <nav aria-label="Page navigation" class="mt-5">
+      <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+          <li class="page-item">
+            <a class="page-link" href="?page=1">First</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.previous_page_number }}">Previous</a>
+          </li>
+        {% endif %}
+
+        {% for num in page_obj.paginator.page_range %}
+          {% if page_obj.number == num %}
+            <li class="page-item active" aria-current="page">
+              <span class="page-link">{{ num }}</span>
+            </li>
+          {% else %}
+            <li class="page-item">
+              <a class="page-link" href="?page={{ num }}">{{ num }}</a>
+            </li>
+          {% endif %}
+        {% endfor %}
+
+        {% if page_obj.has_next %}
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.next_page_number }}">Next</a>
+          </li>
+          <li class="page-item">
+            <a class="page-link" href="?page={{ page_obj.paginator.num_pages }}">Last</a>
+          </li>
+        {% endif %}
+      </ul>
+    </nav>
+  {% endif %}
+</div>
+{% endblock %}

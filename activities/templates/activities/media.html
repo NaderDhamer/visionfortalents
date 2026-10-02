@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% block title %}Vision in the Media | Vision for Talents{% endblock %}
+{% block content %}
+<div class="container py-5">
+  <h1 class="mb-4">Vision in the Media</h1>
+  <div class="row g-4">
+    {% for mention in mentions %}
+      <div class="col-md-6">
+        <div class="card h-100 shadow-sm">
+          <div class="card-body">
+            <h5 class="card-title">{{ mention.title }}</h5>
+            <p class="text-muted small">{{ mention.source }} — {{ mention.date }}</p>
+            {% if mention.external_link %}
+              <a href="{{ mention.external_link }}" class="btn btn-accent btn-sm" target="_blank" rel="noopener">Read more</a>
+            {% endif %}
+          </div>
+        </div>
+      </div>
+    {% empty %}
+      <p class="text-muted">No media mentions yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}
